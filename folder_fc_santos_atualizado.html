@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC Santos - Limpeza Pós-Obra Profissional</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #374151;
+            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header/Capa */
+        .header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            text-align: center;
+            padding: 60px 40px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(30, 58, 138, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateX(0) translateY(0); }
+            100% { transform: translateX(-50px) translateY(-50px); }
+        }
+
+        .header h1 {
+            font-size: 3.5em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .header .slogan {
+            font-size: 1.4em;
+            font-weight: 300;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Seções */
+        .section {
+            background: white;
+            margin-bottom: 30px;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .section h2 {
+            color: #1e3a8a;
+            font-size: 2.2em;
+            margin-bottom: 25px;
+            border-bottom: 3px solid #3b82f6;
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .section h2::before {
+            content: '';
+            width: 8px;
+            height: 40px;
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            margin-right: 15px;
+            border-radius: 4px;
+        }
+
+        /* Quem Somos */
+        .about-text {
+            font-size: 1.2em;
+            line-height: 1.8;
+            color: #4b5563;
+        }
+
+        /* Diferenciais */
+        .diferenciais-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .diferencial-item {
+            background: linear-gradient(135deg, #dbeafe 0%, #f3f4f6 100%);
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 5px solid #3b82f6;
+            transition: all 0.3s ease;
+        }
+
+        .diferencial-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.2);
+        }
+
+        .diferencial-item::before {
+            content: '✓';
+            color: #1e3a8a;
+            font-weight: bold;
+            font-size: 1.5em;
+            margin-right: 10px;
+        }
+
+        /* Serviços */
+        .servicos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .servico-item {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .servico-item:hover {
+            border-color: #3b82f6;
+            background: white;
+            transform: scale(1.05);
+        }
+
+        /* Removed the ::before pseudo-element as images will be used instead */
+        /* .servico-item::before {
+            content: '🧹';
+            font-size: 2.5em;
+            display: block;
+            margin-bottom: 15px;
+        } */
+
+        /* Clientes */
+        .clientes-list {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .cliente-item {
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1.1em;
+            box-shadow: 0 8px 20px rgba(30, 58, 138, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .cliente-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(30, 58, 138, 0.4);
+        }
+
+        /* Contato */
+        .contato-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .contato-item {
+            background: #f8fafc;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            border: 2px solid #e5e7eb;
+            transition: all 0.3s ease;
+        }
+
+        .contato-item:hover {
+            border-color: #3b82f6;
+            background: white;
+            transform: translateY(-3px);
+        }
+
+        .contato-item h3 {
+            color: #1e3a8a;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .contato-item p {
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+            color: white;
+            text-align: center;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 40px;
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5em;
+            }
+            
+            .header .slogan {
+                font-size: 1.1em;
+            }
+            
+            .section {
+                padding: 25px;
+            }
+            
+            .section h2 {
+                font-size: 1.8em;
+            }
+            
+            .diferenciais-grid,
+            .servicos-grid,
+            .cidades-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .clientes-list {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Animações */
+        .section {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .section:nth-child(1) { animation-delay: 0.1s; }
+        .section:nth-child(2) { animation-delay: 0.2s; }
+        .section:nth-child(3) { animation-delay: 0.3s; }
+        .section:nth-child(4) { animation-delay: 0.4s; }
+        .section:nth-child(5) { animation-delay: 0.5s; }
+        .section:nth-child(6) { animation-delay: 0.6s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Cidades Atendidas */
+        .cidades-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .cidade-item {
+            background: #e0f2f7; /* Um azul bem claro */
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+            color: #1e3a8a;
+            border: 1px solid #b3e0f2;
+            transition: all 0.3s ease;
+        }
+
+        .cidade-item:hover {
+            background: #ccecf7;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(30, 58, 138, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>FC Santos</h1>
+            <p class="slogan">Limpeza Pós-Obra Profissional<br>
+            <strong>Sua obra pronta, limpa e com esquadrias instaladas com qualidade profissional!</strong></p>
+        </header>
+
+        <section class="section">
+            <h2>Quem Somos</h2>
+            <p class="about-text">
+                A FC Santos é especializada em limpeza pós-obra e instalação de esquadrias para construtoras; No mercado a 10 anos, atendemos obras com múltiplas unidades como casas em série, prédios e empreendimentos verticais, garantindo agilidade, qualidade e confiabilidade em cada projeto.
+            </p>
+        </section>
+
+        <section class="section">
+            <h2>Nossos Diferenciais</h2>
+            <div class="diferenciais-grid">
+                <div class="diferencial-item">Experiência com grandes volumes (obras em série)</div>
+                <div class="diferencial-item">Equipe treinada e uniformizada</div>
+                <div class="diferencial-item">Produtos e equipamentos próprios</div>
+                <div class="diferencial-item">Entregas no prazo com qualidade</div>
+                <div class="diferencial-item">Checklists por ambiente</div>
+                <div class="diferencial-item">Seguro de responsabilidade civil</div>
+                <div class="diferencial-item">Contratos recorrentes com melhor custo-benefício</div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Serviços Oferecidos</h2>
+            <div class="servicos-grid">
+                <div class="servico-item">
+                    <img src="frame_2_50.jpg" alt="Limpeza fina pós-obra" style="width:100%; height:auto; border-radius: 8px; margin-bottom: 10px;">
+                    <strong>Limpeza fina pós-obra</strong>
+                </div>
+                <div class="servico-item">
+                    <img src="frame_2_80.jpg" alt="Lavagem de pisos e revestimentos" style="width:100%; height:auto; border-radius: 8px; margin-bottom: 10px;">
+                    <strong>Lavagem de pisos e revestimentos</strong>
+                </div>
+                <div class="servico-item">
+                    <img src="frame_1_20.jpg" alt="Limpeza de vidros, esquadrias e bancadas" style="width:100%; height:auto; border-radius: 8px; margin-bottom: 10px;">
+                    <strong>Limpeza de vidros, esquadrias e bancadas</strong>
+                </div>
+                <div class="servico-item">
+                    <img src="frame_1_50.jpg" alt="Instalação de Esquadrias" style="width:100%; height:auto; border-radius: 8px; margin-bottom: 10px;">
+                    <strong>Instalação de Esquadrias</strong>
+                </div>
+                <div class="servico-item">
+                    <img src="frame_1_80.jpg" alt="Ajustes em Esquadrias" style="width:100%; height:auto; border-radius: 8px; margin-bottom: 10px;">
+                    <strong>Ajustes em Esquadrias</strong>
+                </div>
+                <div class="servico-item">
+                    <img src="frame_1 (1).jpg" alt="Equipes devidamente uniformizadas" style="width:100%; height:auto; border-radius: 8px; margin-bottom: 10px;">
+                    <strong>Equipes devidamente uniformizadas</strong>
+                </div>
+                
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Alguns de Nossos Clientes</h2>
+            <div class="clientes-list">
+                <div class="cliente-item">Pacaembu Construtora</div>
+
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Entre em Contato</h2>
+            <div class="contato-grid">
+                <div class="contato-item">
+                    <h3>📞 Telefone</h3>
+                    <p>(17) 99250-0429</p>
+                </div>
+                <div class="contato-item">
+                    <h3>📍 Localização</h3>
+                    <p>Bady Bassitt - SP</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>&copy; 2025 FC Santos - Limpeza Pós-Obra Profissional. Todos os direitos reservados.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Adiciona interatividade suave
+        document.addEventListener('DOMContentLoaded', function() {
+            // Efeito de hover suave nos itens
+            const items = document.querySelectorAll('.diferencial-item, .servico-item, .cliente-item, .contato-item');
+            
+            items.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transition = 'all 0.3s ease';
+                });
+            });
+
+            // Scroll suave para seções
+            const sections = document.querySelectorAll('.section');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
